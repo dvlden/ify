@@ -25,7 +25,7 @@ export default async function handler(
     return res.status(422).json({ message: 'Not a valid URL.' })
   }
 
-  const hid = new Hashids('dvlden', 3)
+  const hid = new Hashids(process.env.HASHID_SALT, 3)
   const latestEntry = await prisma.entry.findMany({
     select: {
       id: true,
