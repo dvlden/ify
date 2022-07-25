@@ -15,6 +15,10 @@ export default async function handler(
     return res.status(405).json({ message: 'Method now allowed' })
   }
 
+  if (req.headers['access-token'] !== process.env.ACCESS_TOKEN) {
+    return res.status(401).json({ message: 'Unauthorized' })
+  }
+
   if (!isValidBody<RequestBody>(req.body, ['link'])) {
     return res.status(422).json({ message: 'Unprocessable entity' })
   }
@@ -22,7 +26,7 @@ export default async function handler(
   const link = req.body.link
 
   if (!isValidLink(link)) {
-    return res.status(422).json({ message: 'Not a valid URL.' })
+    return res.status(422).json({ message: 'Unprocessable entity' })
   }
 
   const hid = new Hashids(process.env.HASHID_SALT, 3)
