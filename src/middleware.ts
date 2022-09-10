@@ -19,6 +19,6 @@ export async function middleware(req: NextRequest) {
 
   if (res.status === 200) {
     const data = await res.json()
-    return NextResponse.redirect(data.link)
+    return NextResponse.redirect(new URL(data.link))
   }
 }
