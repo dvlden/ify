@@ -61,10 +61,12 @@ export default async function handler(
       return res.status(422).json({ message: 'Unprocessable entity' })
     }
 
-    await prisma.entry.delete({
+    const data = await prisma.entry.delete({
       where: {
         id: req.body.id,
       },
     })
+
+    return res.status(200).json(data)
   }
 }
