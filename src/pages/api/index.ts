@@ -4,8 +4,8 @@ import Hashids from 'hashids'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type RequestBody = {
-  link: string
   id: number
+  link: string
 }
 
 export default async function handler(
@@ -43,7 +43,7 @@ export default async function handler(
       take: 1,
     })
 
-    const id = (latestEntry[0]?.id || 0) + 1
+    const id = (latestEntry[0].id ?? 0) + 1
 
     const data = await prisma.entry.create({
       data: {
