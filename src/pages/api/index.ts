@@ -57,7 +57,7 @@ export default async function handler(
 
   // DELETE
   if (req.method === 'DELETE') {
-    if (!isValidBody<RequestBody>(req.body, ['link', 'id'])) {
+    if (!isValidBody<RequestBody>(req.body, ['id'])) {
       return res.status(422).json({ message: 'Unprocessable entity' })
     }
 
