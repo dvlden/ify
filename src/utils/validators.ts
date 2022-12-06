@@ -1,4 +1,4 @@
-function isValidLink(input: string) {
+export function isValidLink(input: string) {
   let url: URL
 
   try {
@@ -17,5 +17,3 @@ export function isValidBody<T extends Record<string, unknown>>(
   if (Object.keys(body).length === 0) return false
   return Object.keys(body).every((key) => fields.includes(key))
 }
-
-export { isValidLink }
